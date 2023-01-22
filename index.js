@@ -1,4 +1,4 @@
-const MORSE_TABLE = {
+const morseCode = {
   1011: "a",
   11101010: "b",
   11101110: "c",
@@ -39,11 +39,12 @@ const MORSE_TABLE = {
 };
 
 exports.decode = function decode(morse) {
-  let result = "";
-  for (let i = 0; i < morse.length; i = 10 + i) {
+  let result = ""; // пуста строка - щоб додати результат
+  for (let i = 0; i < morse.length; i = i + 10) {
+    //цикл в якому задаємо довжину рядку(однієї букави морзе)
     let str = morse.substr(i, 10);
-    let decoded = MORSE_TABLE[parseInt(str)] || " ";
-    result += decoded;
+    let decoded = morseCode[parseInt(str)] || " "; //щоб відрізати нулі та присвоїти пробіли замість нулів
+    result += decoded; // add decoded to result
   }
   return result;
 };
